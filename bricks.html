@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f7f2">
+  <title>AI 积木工坊 · 把 AI，拼出来</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='16' width='52' height='40' rx='8' fill='%234969ed'/%3E%3Crect x='14' y='7' width='12' height='16' rx='5' fill='%236f88fa'/%3E%3Crect x='38' y='7' width='12' height='16' rx='5' fill='%236f88fa'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="bricks.css">
+  <script defer src="foundations.js"></script><script defer src="brick-engine.js"></script><script defer src="bricks-ui.js"></script>
+</head>
+<body>
+<header class="topbar"><a href="bricks.html" class="brand"><span class="brand-brick" aria-hidden="true"><i></i><i></i></span><span>AI 积木工坊<small>BUILD. RUN. DISCOVER.</small></span></a><nav aria-label="主导航"><a href="index.html" class="quiet">Transformer 架构 ↗</a><button data-action="map" class="quiet"><span>▦</span> 冒险地图</button><a href="lab.html" class="quiet">原理实验室 ↗</a><button data-action="help" class="help-button" aria-label="玩法说明">?</button></nav></header>
+<main>
+  <section class="hero"><div><span class="eyebrow">从一块积木，到一个会做事的 AI</span><h1>把 AI，<span>拼出来。</span><i class="spark" aria-hidden="true">✳</i></h1><p>拿起零件，接上接口。让你搭的机器，动起来。</p></div><div class="collection"><div class="mini-bricks" aria-hidden="true"><i class="mini yellow">≡</i><i class="mini blue">✦</i><i class="mini green">✓</i></div><div><b id="total-stars">0</b><span> / 27 星星</span><small id="collection-label">你的第一件作品，从这里开始</small></div></div></section>
+  <section class="journey" aria-label="冒险路线"><div class="world-heading"><span id="world-name">01 / 模型制造厂</span><button class="text-button" data-action="map">全部 9 个挑战 <span>↗</span></button></div><nav id="level-path" aria-label="选择关卡"></nav></section>
+  <section class="mission"><div class="mission-number" id="mission-number">01</div><div class="mission-copy"><div class="mission-kicker" id="mission-kicker">今天造什么？</div><h2 id="mission-title" tabindex="-1"></h2><p id="mission-goal"></p></div><div class="difficulty-control"><label for="difficulty">游玩方式</label><select id="difficulty"><option value="guided">跟着搭 · 接口提示</option><option value="challenge">自己搭 · 独立挑战</option><option value="sandbox">自由搭 · 全部零件</option></select></div></section>
+  <div class="workshop">
+    <aside class="parts-box" aria-label="积木盒"><div class="box-heading"><h3>积木盒 <span id="part-count"></span></h3><span class="grip" aria-hidden="true">⠿</span></div><p class="tray-caption">拖到桌面，或点选后放进「＋」</p><div id="parts"></div><div class="tray-footer"><i></i> 零件可重复使用，放心拆装</div></aside>
+    <section class="workbench" aria-label="搭建与试跑"><div class="bench-toolbar"><div class="bench-label"><span class="live-dot"></span> 我的搭建台 <small id="block-count"></small></div><div class="bench-tools"><button data-action="undo" class="tool-button" aria-label="撤销上一步">↶ <span>撤销</span></button><button data-action="clear" class="tool-button">⌫ <span>拆开</span></button><button data-action="hint" class="tool-button">☼ <span>灵感</span></button></div></div>
+      <div id="selected-bar" class="selected-bar" hidden></div>
+      <div class="board" id="board"><div class="board-label">BUILDING AREA <span>顺着箭头，接出一条数据路线</span></div><svg id="wires" aria-hidden="true"></svg><div id="flow" class="flow"></div><div id="empty-coach" class="empty-coach"><span class="coach-arrow" aria-hidden="true">↖</span><strong>这里缺一位小小发明家</strong><p>先从积木盒里拿一块，放进虚线框。<br>拼错也没关系，跑一跑就知道！</p></div><div class="board-foot"><span id="interface-guide">● 相同接口可以相接</span><span>拼错不会扣星星</span></div></div>
+      <div class="run-dock"><div class="robot" id="robot" aria-hidden="true"><i></i><i></i><b></b></div><div class="run-prompt"><strong id="run-prompt">等你搭好，就能出发</strong><span id="run-subtitle">让数据跑一圈，看看你的机器会做什么。</span></div><label class="speed-label" for="speed">速度<select id="speed"><option value="800">1×</option><option value="350">2×</option></select></label><button id="run-button" class="primary" data-action="run"><span>▶</span> 试跑机器</button></div>
+      <section id="runtime" class="runtime" aria-label="机器运行记录" hidden><div class="runtime-heading"><strong id="runtime-title">数据正在旅行</strong><button class="text-button" data-action="trace">展开运行记录 ↓</button></div><div id="runtime-live" role="status" aria-live="polite"></div><div id="approval-controls" hidden><button class="primary" data-action="approve">批准模拟退款 ¥129</button><button class="secondary" data-action="reject">拒绝并停机</button></div><ol id="trace-list" hidden></ol></section>
+      <div class="bench-bottom"><span>✓ 通关条件：<span id="checks"></span></span><button class="text-button" data-action="principle">这一关藏着什么原理？ ↗</button></div>
+    </section>
+  </div>
+  <footer><span>AGENT FOUNDRY <i>好奇心，是最好的说明书。</i></span><span>模型小规模计算 · 业务离线模拟 · 进度自动保存在本机</span></footer>
+</main>
+<dialog id="game-dialog"><button class="dialog-close" data-action="close" aria-label="关闭弹窗">×</button><div id="dialog-content"></div></dialog>
+<div id="toast" class="toast" role="status"></div><div id="confetti" aria-hidden="true"></div>
+</body></html>

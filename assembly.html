@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#143c32">
+  <meta name="description" content="从基础语言模型到 Agent Harness，再到业务交付：通过组装、运行与调试学习 Agent。">
+  <title>Agent Foundry · 智能体组装工坊</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%2321382f'/%3E%3Ctext x='8' y='29' font-size='27' font-family='Arial' font-weight='bold' fill='%23cef56f'%3Ea%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="foundations.css">
+  <script defer src="game.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <aside class="rail" aria-label="主导航">
+    <a class="brand-mark" href="index.html" aria-label="Agent Foundry 首页">a<span>f</span><i></i></a>
+    <div class="rail-links">
+      <button class="rail-link active" data-view="workshop" title="组装工坊" aria-label="组装工坊"><span data-icon="grid"></span><small>工坊</small></button>
+      <button class="rail-link" data-action="handbook" title="知识手册" aria-label="知识手册"><span data-icon="book"></span><small>手册</small></button>
+      <button class="rail-link" data-action="achievements" title="学习进度" aria-label="学习进度"><span data-icon="award"></span><small>成就</small></button>
+    </div>
+    <button class="rail-link rail-bottom" data-action="about" aria-label="关于游戏"><span data-icon="help"></span><small>关于</small></button>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="wordmark" href="index.html">AGENT FOUNDRY <span>/ 智能体组装工坊</span></a>
+      <div class="top-actions"><span class="local-badge"><i></i> 本地模拟实验室</span><button class="text-button" data-action="handbook">学习手册 <span data-icon="arrow-up-right"></span></button></div>
+    </header>
+    <main>
+      <section class="hero">
+        <div><div class="eyebrow"><span></span> BUILD TO UNDERSTAND</div><h1>把模型，组装成<span>行动力。</span></h1><p>一个模型会说话。加上工具、循环与边界，让它真正完成任务。</p></div>
+        <div class="hero-stats"><div class="progress-ring" id="progress-ring"><span id="progress-value">0<small>/8</small></span></div><div><strong id="progress-label">从第一块组件开始</strong><span>组装 · 运行 · 理解</span></div></div>
+      </section>
+      <nav class="chapter-switch" aria-label="学习篇章"><a href="index.html">← Transformer 架构</a><a href="lab.html">01 模型内部实验</a><a class="selected" href="assembly.html" aria-current="page">02 Harness 与业务组装</a></nav><nav class="level-path" id="level-path" aria-label="学习关卡"></nav>
+      <section class="workshop-heading"><div class="section-title"><span class="pill" id="stage-tag">STAGE 01</span><h2 id="level-title">唤醒模型</h2><span class="lesson-duration" id="lesson-duration">约 2 分钟</span></div><button class="text-button" data-action="hint"><span data-icon="bulb"></span> 给我一点提示</button></section>
+      <section class="workbench">
+        <aside class="library panel">
+          <div class="panel-heading"><h3><span data-icon="blocks"></span>组件库</h3><span id="module-count">01 / 12</span></div>
+          <p class="panel-caption">点击或拖入装配台，赋予新的能力</p>
+          <div class="library-filter" aria-label="组件分类"><button class="active" data-filter="all">全部</button><button data-filter="core">模型</button><button data-filter="tools">工具</button><button data-filter="runtime">运行</button></div>
+          <div id="module-list" class="module-list"></div>
+          <div class="library-note"><span data-icon="info"></span><span>组件旁的 <b>i</b> 可以查看原理。<br>更多能力随关卡解锁。</span></div>
+        </aside>
+        <section class="assembly" aria-label="智能体装配台">
+          <div class="assembly-toolbar"><div><i class="status-dot"></i> <strong>智能体装配台</strong><span id="assembly-count">0 COMPONENTS</span></div><button class="canvas-button" data-action="clear" title="清空当前装配"><span data-icon="rotate"></span> 清空</button></div>
+          <div class="canvas" id="canvas">
+            <div class="flow-entry"><span class="tiny-label">INPUT</span><span data-icon="message"></span><span>用户的目标</span></div>
+            <div class="flow-line"></div>
+            <div class="machine-zone" data-drop-zone="core"><div class="zone-label"><span>01 / MODEL</span><small>理解与生成</small></div><div class="core-slots" id="core-slots"></div></div>
+            <div class="flow-line labeled"><span>思考需要一套行动系统</span></div>
+            <div class="machine-zone harness-zone" data-drop-zone="harness"><div class="zone-label"><span>02 / HARNESS</span><small>执行、反馈与边界</small></div><div class="harness-slots" id="harness-slots"></div></div>
+            <div class="flow-line"></div>
+            <button class="flow-output" id="flow-output" data-action="show-output"><span data-icon="flag"></span><span>业务结果</span><small>等待运行</small><span data-icon="arrow-up-right"></span></button>
+            <div class="canvas-legend"><span><i></i> 已接入</span><span><i></i> 待装配</span><span>拖入组件 · 连接自动完成</span></div>
+          </div>
+          <div class="run-bar"><div class="budget"><span>装配预算 <strong id="budget-text">0 / 6</strong><small> 点</small></span><div class="budget-track"><i id="budget-fill"></i></div></div><button class="run-button" id="run-button"><span data-icon="play"></span> 运行智能体 <kbd>↵</kbd></button></div>
+        </section>
+        <aside class="mission panel">
+          <div class="panel-heading"><h3><span data-icon="flag"></span>任务控制台</h3><span class="live-label">MISSION</span></div>
+          <div class="console-tabs" role="tablist" aria-label="控制台视图"><button class="active" id="tab-task" data-tab="task" role="tab" aria-selected="true" aria-controls="task-panel">任务简报</button><button id="tab-trace" data-tab="trace" role="tab" aria-selected="false" aria-controls="trace-panel">运行轨迹 <i id="trace-count">0</i></button></div>
+          <div id="task-panel" role="tabpanel" aria-labelledby="tab-task"><div class="scenario-selector" id="scenario-selector"></div><div class="mission-meta"><span id="mission-tag">EXPERIMENT 01</span><span data-icon="arrow-up-right"></span></div><h3 id="mission-title"></h3><p class="mission-brief" id="mission-brief"></p><div class="request-box"><span>用户请求</span><p id="mission-request"></p></div><h4 class="checklist-title">通关目标 <span>ACCEPTANCE</span></h4><ul class="checklist" id="checklist"></ul><div class="concept-card"><div><span data-icon="bulb"></span><b>这一关，你会理解</b></div><p id="learning-text"></p></div></div>
+          <div id="trace-panel" class="trace-panel" role="tabpanel" aria-labelledby="tab-trace" hidden><div class="trace-empty"><span data-icon="activity"></span><h4>每一步，都看得见</h4><p>运行后，在这里观察模型如何思考、<br>工具如何执行、循环如何推进。</p></div></div>
+        </aside>
+      </section>
+      <section class="bottom-strip"><div><span data-icon="route"></span><span><b>先试，再理解。</b> 组装失败也是实验的一部分，运行轨迹会告诉你原因。</span></div><button class="text-button" data-action="map">看看完整学习路线 <span data-icon="arrow-right"></span></button></section>
+      <footer><span>AGENT FOUNDRY <i>学习正在发生。</i></span><span>确定性教学模拟 · 不调用真实模型或外部工具 · 进度保存在此浏览器</span></footer>
+    </main>
+  </div>
+  <dialog id="dialog"><div class="dialog-top"><span id="dialog-eyebrow">FIELD NOTES</span><button class="icon-button" data-action="close-dialog" aria-label="关闭弹窗"><span data-icon="close"></span></button></div><div id="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

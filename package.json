@@ -1,0 +1,11 @@
+{
+  "name": "agent-foundry",
+  "version": "5.1.0",
+  "private": true,
+  "description": "WASD 角色搬运游戏：走进 Transformer 工厂搬零件、安装、拉线与通电",
+  "scripts": {
+    "start": "node server.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "build": "node scripts/build-site.cjs"
+  }
+}
