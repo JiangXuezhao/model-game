@@ -1,7 +1,7 @@
 ## 在线游玩与发布
 
-- 游戏：[GitHub Pages](https://jiangxuezhao.github.io/model-game/)
-- 源码：[JiangXuezhao/model-game](https://github.com/JiangXuezhao/model-game)
+- 游戏：[GitHub Pages](https://maskjiang.github.io/model-game/)
+- 源码：[MaskJiang/model-game](https://github.com/MaskJiang/model-game)
 
 纯静态网页，无后端、数据库或真实模型 API。游戏计算与进度存储在玩家浏览器中。
 
